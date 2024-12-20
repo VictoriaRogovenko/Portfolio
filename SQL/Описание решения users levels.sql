@@ -1,6 +1,8 @@
 Задания на написание запросов к БД:	SQL-код																								
-1. Отобрать из таблицы user всех пользователей, у которых level_id=1, skill > 799000 и в имени встречается буква а	SELECT user_name FROM users where level_id=1 AND skill > 799000 AND user_name like '%a%';																								
-2. Удалить всех пользователей, у которых skill меньше 100000	DELETE from users where skill < 100000;																								
+1. Отобрать из таблицы user всех пользователей, у которых level_id=1, skill > 799000 и в имени встречается буква а	
+SELECT user_name FROM users where level_id=1 AND skill > 799000 AND user_name like '%a%';																								
+2. Удалить всех пользователей, у которых skill меньше 100000	
+  DELETE from users where skill < 100000;																								
 3. Вывести все данные из таблицы user в порядке убывания по полю skill	"SELECT * FROM users
 ORDER BY skill DESC;"																								
 4. Добавить в таблицу user нового пользователя по имени Oleg, с уровнем 4 и skill =10	INSERT INTO users values (default,'Oleg', 4, 10);																								
