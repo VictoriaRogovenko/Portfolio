@@ -1,0 +1,516 @@
+{
+	"info": {
+		"_postman_id": "2f49ac1e-d011-4b01-b655-c86b3429e59f",
+		"name": "AgentApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38141991"
+	},
+	"item": [
+		{
+			"name": "Авторизация",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"token\", jsonData.token);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"qa@qa.qa\",\r\n    \"password\": \"111\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/{{api_version}}/users/obtain-token",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{api_version}}",
+						"users",
+						"obtain-token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Создание водителя 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"driver_id_1\", jsonData.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"first_name\": \"Александр\",\r\n  \"last_name\": \"Романов\",\r\n  \"patronymic\": \"Владимирович\",\r\n  \"birth_date\": \"1968-01-10\",\r\n  \"driving_experience_started\": \"1988-10-10\",\r\n  \"driver_licenses\": [\r\n    {\r\n      \"credential_type\": \"DRIVER_LICENSE\",\r\n      \"number\": \"012345\",\r\n      \"series\": \"1234\",\r\n      \"issue_date\": \"1987-10-10\"\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/{{api_version}}/insured_objects/drivers",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{api_version}}",
+						"insured_objects",
+						"drivers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Создание водителя 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"driver_id_2\", jsonData.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"first_name\": \"Александр\",\r\n  \"last_name\": \"Смирнов\",\r\n  \"patronymic\": \"Александрович\",\r\n  \"birth_date\": \"1968-01-10\",\r\n  \"driving_experience_started\": \"1988-10-10\",\r\n  \"driver_licenses\": [\r\n    {\r\n      \"credential_type\": \"DRIVER_LICENSE\",\r\n      \"number\": \"013245\",\r\n      \"series\": \"5678\",\r\n      \"issue_date\": \"1987-10-20\"\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/{{api_version}}/insured_objects/drivers",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{api_version}}",
+						"insured_objects",
+						"drivers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Создание собственника",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"owner_id_1\", jsonData.person);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"Александр\",\r\n    \"last_name\": \"Романов\",\r\n    \"patronymic\": \"Владимирович\",\r\n    \"gender\": \"M\",\r\n    \"birth_date\": \"1968-01-10\",\r\n    \"credential\": [\r\n        {\r\n            \"credential_type\": \"DRIVER_LICENSE\",\r\n            \"number\": \"012345\",\r\n            \"series\": \"1234\",\r\n            \"issue_date\": \"1987-10-10\"\r\n        },\r\n        {\r\n            \"credential_type\": \"RUSSIAN_INTERNAL_PASSPORT\",\r\n            \"issue_date\": \"1986-03-08\",\r\n            \"issue_point\": \"УФМС\",\r\n            \"issue_point_code\": \"124-456\",\r\n            \"number\": \"123856\",\r\n            \"series\": \"1234\"\r\n        }\r\n    ],\r\n    \"address\": [\r\n        {\r\n            \"address_query\": \"г Москва, г Зеленоград, ул Ленина, д 1\",\r\n            \"address_type\": \"LEGAL_ADDRESS\",\r\n            \"region_kladr_id\": \"7700000200000\",\r\n            \"city_kladr_id\": \"7700000200000\"\r\n        },\r\n        {\r\n            \"address_query\": \"г Москва, г Зеленоград, ул Ленина, д 1\",\r\n            \"address_type\": \"ACTUAL_ADDRESS\",\r\n            \"region_kladr_id\": \"7700000200000\",\r\n            \"city_kladr_id\": \"7700000200000\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/v1/insured_objects/owners/natural_persons",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v1",
+						"insured_objects",
+						"owners",
+						"natural_persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Создание страхователя",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"insurant_id_1\", jsonData.person);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"Александр\",\r\n    \"last_name\": \"Романов\",\r\n    \"patronymic\": \"Владимирович\",\r\n    \"gender\": \"M\",\r\n    \"birth_date\": \"1968-01-10\",\r\n    \"credential\": [\r\n        {\r\n            \"credential_type\": \"DRIVER_LICENSE\",\r\n            \"number\": \"012345\",\r\n            \"series\": \"1234\",\r\n            \"issue_date\": \"1987-10-10\"\r\n        },\r\n        {\r\n            \"credential_type\": \"RUSSIAN_INTERNAL_PASSPORT\",\r\n            \"issue_date\": \"1986-03-08\",\r\n            \"issue_point\": \"УФМС\",\r\n            \"issue_point_code\": \"124-456\",\r\n            \"number\": \"123856\",\r\n            \"series\": \"1234\"\r\n        }\r\n    ],\r\n    \"address\": [\r\n        {\r\n            \"address_query\": \"г Москва, г Зеленоград, ул Ленина, д 1\",\r\n            \"address_type\": \"LEGAL_ADDRESS\",\r\n            \"region_kladr_id\": \"7700000000000\",\r\n            \"city_kladr_id\": \"7700000200000\"\r\n        },\r\n        {\r\n            \"address_query\": \"г Москва, г Зеленоград, ул Ленина, д 1\",\r\n            \"address_type\": \"ACTUAL_ADDRESS\",\r\n            \"region_kladr_id\": \"7700000200000\",\r\n            \"city_kladr_id\": \"7700000200000\"\r\n        }\r\n    ],\r\n    \"contact\": [\r\n        {\r\n            \"contact_type\": \"EMAIL\",\r\n            \"data\": \"test@mail.ru\",\r\n            \"comment\": null\r\n        },\r\n        {\r\n            \"contact_type\": \"PHONE\",\r\n            \"data\": \"+7 (978) 202-69-76\",\r\n            \"comment\": null\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/{{api_version}}/insured_objects/insurants/natural_persons",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{api_version}}",
+						"insured_objects",
+						"insurants",
+						"natural_persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Создание автомобиля",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"car_id_1\", jsonData.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"car_model_id\": 864026180,\r\n  \"engine_power\": 211,\r\n  \"chassis_number\": \"WAUZZZ8T4BA037240\",\r\n  \"car_body_number\": \"WAUZZZ8T4BA037241\",\r\n  \"vin_number\": \"WAUZZZ8T4BA037241\",\r\n  \"number_plate\": \"Р904МХ178\",\r\n  \"manufacturing_year\": 2010,\r\n  \"max_mass\": null,\r\n  \"credential\": [\r\n    {\r\n      \"credential_type\": \"VEHICLE_REGISTRATION\",\r\n      \"issue_date\": \"2010-11-01\",\r\n      \"number\": \"267461\",\r\n      \"series\": \"78УН\"\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/v3/insured_objects/cars",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v3",
+						"insured_objects",
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Обьект страхования",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"insured_object_id\", jsonData.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"drivers\": [\r\n        \"{{driver_id_1}}\", \"{{driver_id_2}}\"\r\n    ],\r\n    \"owner\": \"{{owner_id_1}}\",\r\n    \"car\": \"{{car_id_1}}\",\r\n    \"insurant\": \"{{insurant_id_1}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/{{api_version}}/insured_objects/",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{api_version}}",
+						"insured_objects",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Обновление обекта страхования",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"insured_object_id_\", jsonData.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"phone\": \"+79782026918\",\r\n    \"email\": \"viktoria_flash@mail.ru\",\r\n    \"addressRegistration\": \"г Москва, ул Швейцарская, д 3 к 1, кв 1\",\r\n    \"addressActual\": \"г Москва, ул Швейцарская, д 3 к 1, кв 1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/{{api_version}}/insured_objects/{{insured_object_id}}",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{api_version}}",
+						"insured_objects",
+						"{{insured_object_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Создание договора",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"agreements_id2\", jsonData.id);\r",
+							"pm.environment.set(\"calculation2\", jsonData.calculation);\r",
+							"pm.environment.set(\"calculation.premium2\", jsonData.calculation.premium);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"valid_from\": \"2024-11-15\",\r\n\"valid_to\": \"2025-11-14\",\r\n\"insurance_period\": 8,\r\n\"target_of_using\": 11,\r\n\"drivers_ids\": [\r\n        \"{{driver_id_1}}\",\r\n        \"{{driver_id_2}}\"\r\n    ],\r\n\"is_car_without_registration\": false,\r\n\"engine_power\": 211.0,\r\n\"has_car_trailer\": false,\r\n\"car_type\": \"B\",\r\n\"owner_registration\": {\r\n            \"address_query\": \"г Москва, г Зеленоград, ул Ленина, д 1\",\r\n            \"address_type\": \"LEGAL_ADDRESS\",\r\n            \"region_kladr_id\": \"7700000200000\",\r\n            \"city_kladr_id\": \"7700000200000\"\r\n        }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/v3/agreements/calculations",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v3",
+						"agreements",
+						"calculations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Обновление договора",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"agreement_id2_\", jsonData.id);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"insured_object\": \"{{insured_object_id}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/{{api_version}}/agreements/{{agreements_id2}}",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{api_version}}",
+						"agreements",
+						"{{agreements_id2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение полного расчёт по СК",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/{{api_version}}/agreements/{{agreement_id2_}}/results/TEST_COMPANY",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{api_version}}",
+						"agreements",
+						"{{agreement_id2_}}",
+						"results",
+						"TEST_COMPANY"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "Token {{token}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
